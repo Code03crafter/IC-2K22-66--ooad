@@ -1,0 +1,26 @@
+flowchart TD
+ A([Start]) --> B[Show start screen]
+ B --> C{Enter or tap?}
+ C -- No --> B
+ C -- Yes --> D[Reset game and create mission]
+ D --> E[Process input and update frame]
+ E --> F[Move player, traffic and destination]
+ F --> G{Collision?}
+ G -- Yes --> H[Deduct life and 20 points]
+ G -- No --> I{At drop zone and stopped?}
+ H --> J{Lives remaining?}
+ J -- No --> K[Show game over and best score]
+ J -- Yes --> I
+ I -- Yes --> L[Award fare, increment level, new mission]
+ I -- No --> M{Missed stop zone?}
+ L --> N[Render frame and HUD]
+ M -- Yes --> O[Deduct 50 points and new mission]
+ M -- No --> N
+ O --> N
+ N --> P{Paused?}
+ P -- Yes --> Q[Wait for resume]
+ Q --> E
+ P -- No --> E
+ K --> R{Restart?}
+ R -- Yes --> D
+ R -- No --> S([End])

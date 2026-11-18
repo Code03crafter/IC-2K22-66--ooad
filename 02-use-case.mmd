@@ -1,0 +1,20 @@
+flowchart LR
+ Player([Player])
+ subgraph Game[Desi Auto Dhamaal]
+ Start([Start or restart game])
+ Drive([Steer, accelerate and brake])
+ Special([Drift or wheelie boost])
+ Horn([Honk to move traffic])
+ Drop([Drop passenger at stop zone])
+ Pause([Pause or resume])
+ Music([Change or mute music])
+ Score([View score, lives and level])
+ end
+ Player --- Start
+ Player --- Drive
+ Player --- Special
+ Player --- Horn
+ Player --- Drop
+ Player --- Pause
+ Player --- Music
+ Player --- Score

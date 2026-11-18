@@ -1,0 +1,18 @@
+flowchart TB
+ subgraph Browser[Web Browser]
+ UI[HTML Canvas and Touch Controls]
+ Input[Keyboard and Pointer Event Handlers]
+ Loop[Animation Loop]
+ Rules[Movement, Collision, Scoring and Missions]
+ Render[Canvas 2D Renderer]
+ Sound[Web Audio and HTML Audio]
+ Storage[localStorage Best Score]
+ end
+ Input --> Loop
+ UI --> Input
+ Loop --> Rules
+ Rules --> Render
+ Render --> UI
+ Rules --> Sound
+ Rules <--> Storage
+

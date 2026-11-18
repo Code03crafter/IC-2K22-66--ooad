@@ -1,0 +1,29 @@
+sequenceDiagram
+ actor User
+ participant Input as Keyboard/Touch
+ participant Game as Game Loop
+ participant Mission as Mission Logic
+ participant Traffic as Traffic Logic
+ participant Audio as Audio System
+ participant Canvas as Canvas Renderer
+ User->>Input: Press Enter
+ Input->>Game: reset(), state=play
+ Game->>Mission: newMission()
+ loop Each animation frame while playing
+ Game->>Input: Read held keys
+ Game->>Traffic: spawn(), move vehicles
+ Traffic-->>Game: Vehicle positions
+ Game->>Game: AABB collision check
+ alt Collision and no invulnerability
+ Game->>Game: hit(): lives--, score-=20
+ Game->>Audio: sfx(crash)
+ end
+ Game->>Mission: Update distance, timer and zone
+ opt Player stopped inside zone
+ User->>Input: Space / hold brake
+ Input->>Mission: tryDrop() / automatic drop
+ Mission-->>Game: Fare, level++, next mission
+ Game->>Audio: sfx(ding)
+ end
+ Game->>Canvas: drawBG(), drawPlayer(), drawHUD()
+ end
